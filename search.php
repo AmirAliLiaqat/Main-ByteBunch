@@ -18,9 +18,13 @@ get_header();
                                 <div class="mb-4 p-2 bg-white">
 								    <?php if(get_the_title()) { ?>
                                         <h2 class="main-heading m-2">
+                                            <?php 
+                                                global $wp_query;
+                                                echo $total_results = $wp_query->found_posts;
+                                            ?>
                                             Search Results for
                                             ‘‘<?php 
-                                                echo $search = get_the_title();
+                                                echo get_the_title();
                                             ?>’’
                                         </h2>
                                     <?php 
@@ -29,7 +33,7 @@ get_header();
                                         } 
                                     ?>
                                 </div><!--my-2-->
-                                <?php require_once 'template-parts/content-article.php'; ?>
+                                <?php get_template_part('template-parts/content-article'); ?>
                             </div><!--col-md-8-->
                             <div class="col-md-4">
                                 <?php get_sidebar(); ?>

@@ -52,6 +52,8 @@ require_once 'inc/widgets.php';
  */
 require_once 'inc/meta-boxes.php';
 
+require_once 'inc/metabox-image-uploader.php';
+
 /**
  * Register Custom Post Types.
  */
@@ -84,6 +86,22 @@ require_once 'inc/template-tags.php';
  */
 require_once 'inc/template-functions.php';
 
-require_once 'inc/metabox-image-uploader.php';
+// Load external file to add support for MultiPostThumbnails. Allows you to set more than one "feature image" per post.
+require_once 'inc/multi-post-thumbnails.php';
 
-// Metabox_Image_Uploader::register_scripts();
+/**
+* Halt the main query in the case of an empty search 
+*/
+add_filter( 'posts_search', function( $search, \WP_Query $q ) {
+   	if( ! is_admin() && empty( $search ) && $q->is_search() && $q->is_main_query() )
+	   $search .=" AND 0=1 ";
+   	return $search;
+}, 10, 2 );
+
+/**
+* Change excerpt read more [] into ... 
+*/
+function change_excerpt_dots( $more ) {
+	return ' ...';
+}
+add_filter('excerpt_more', 'change_excerpt_dots');

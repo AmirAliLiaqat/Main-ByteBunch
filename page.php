@@ -21,7 +21,8 @@ get_header();
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 page_left_content">
-							<?php require_once 'template-parts/content-article.php'; ?>
+                            <?php //get_template_part('template-parts/content-article'); ?>
+                            <h2>Hello Welcome to <?php the_title(); ?> page...</h2>
                         </div><!--col-xs-12-->
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
                             <?php get_sidebar(); ?>

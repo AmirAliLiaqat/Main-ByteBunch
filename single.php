@@ -77,7 +77,7 @@ get_header();
                                                     <img src="<?php echo THEME_DIR_URI; ?>/images/profile_placeholder.png" class="comment_user_profile"> 	&nbsp;&nbsp;&nbsp;
                                                 </div><!--profile-->
                                                 <div class="details">
-                                                    <a href="" class="fst-italic link"><?php echo $comment->comment_author; ?></a>
+                                                    <a href="" class="fst-italic link"><?php the_author_posts_link(); ?></a>
                                                     <p>
                                                         <?php echo get_comment_date( 'F j, Y' ); ?> at
                                                         <?php echo get_comment_time( 'h:s a' ); ?>

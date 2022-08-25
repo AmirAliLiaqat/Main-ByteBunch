@@ -24,7 +24,7 @@ get_header();
                                         Category
                                     </h2>
                                 </div><!--my-2-->
-                                <?php require_once 'template-parts/content-article.php'; ?>
+                                <?php get_template_part('template-parts/content-article'); ?>
                             </div><!--col-md-8-->
                             <div class="col-md-4">
                                 <?php get_sidebar(); ?>

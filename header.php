@@ -26,7 +26,16 @@
 	<header>
         <nav class="navbar navbar-expand-lg navbar-light navbar-primary">
           <div class="container">
-              <?php the_custom_logo(); ?>
+              <?php 
+			  	if(has_custom_logo()) {
+					the_custom_logo();
+				} else { ?>
+					<a class="navbar-brand" href="<?php echo get_site_url(); ?>">
+						<img src="<?php echo get_template_directory_uri(); ?>/images/logo-white.svg" class="logo-img d-lg-inline-block d-none">
+						<img src="<?php echo get_template_directory_uri(); ?>/images/logo-black.svg" class="logo-img d-inline-block d-lg-none">
+					</a>
+				<?php }
+			   ?>
             <button
               class="navbar-toggler" type="button" data-bs-toggle="collapse"  data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -44,7 +53,7 @@
           </div><!--container-->
         </nav>
 		<?php 
-			if(is_front_page() && is_home()) {
+			if(is_home() && is_front_page()) {
 		?>
 		<img src="<?php echo get_template_directory_uri(); ?>/images/bg-bottom.svg" class="bottom-bg">
 		<section class="welcome-area">
@@ -57,60 +66,54 @@
 					</div><!--col-lg-6-->
 					<div class="col-lg-5 col-md-12 mb-5 offset-lg-1">
 						<div class="row">
+							<?php
+								$portfolio = new WP_Query( array(
+									'post_type' => 'portfolio',
+									'posts_per_page' => '8',
+									'order' => 'ASC'
+								) );
+
+								if($portfolio->have_posts()) :
+									while($portfolio->have_posts()) :
+										$portfolio->the_post();
+							?>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-3">
-								<?php //$url = get_post_meta($post->ID, 'site_url', true); ?>
-								<?php //$value = get_post_meta($post->ID, 'miu_images', true); ?>
-								<a href="https://dev.bytebunch.com/bioinnovation.com/" class="app-item">
-									<img src="<?php echo get_template_directory_uri(); ?>/images/icon_bioinnovation.jpg" class="img-fluid">
+								<?php $url = get_post_meta($post->ID, 'site_url', true); ?>
+								<?php 
+									$value = get_post_meta($post->ID, 'miu_images', true); 
+									$images = unserialize($value); 
+									foreach ($images as $image) {
+										$image;
+									}
+								?>
+								<a href="<?php if(! empty($url)) { echo $url; } else { ''; } ?>" class="app-item">
+									<img src="<?php if(! empty($image)) { echo $image; } else { echo 'http://localhost/wordpress/wp-content/uploads/2022/06/profile_placeholder.png'; } ?>" class="img-fluid">
 								</a>
 							</div><!--col-lg-3-->
-							<div class="col-lg-3 col-md-3 col-sm-3 col-3">
-								<a href="https://dev.bytebunch.com/induscover/" class="app-item">
-									<img src="<?php echo get_template_directory_uri(); ?>/images/icon_induscover.jpg" class="img-fluid">
-								</a>
-							</div><!--col-lg-3-->
-							<div class="col-lg-3 col-md-3 col-sm-3 col-3">
-								<a href="https://makewilleasy.com/" class="app-item">
-									<img src="<?php echo get_template_directory_uri(); ?>/images/icon-make-will-easy.jpg" class="img-fluid">
-								</a>
-							</div><!--col-lg-3-->
-							<div class="col-lg-3 col-md-3 col-sm-3 col-3">
-								<a href="https://test.bytebunch.com/" class="app-item">
-									<img src="<?php echo get_template_directory_uri(); ?>/images/bytebunch-icon.jpg" class="img-fluid">
-								</a>
-							</div><!--col-lg-3-->
-							<div class="col-lg-3 col-md-3 col-sm-3 col-3">
-								<a href="https://dev.bytebunch.com/readingrescuers.com/" class="app-item">
-									<img src="<?php echo get_template_directory_uri(); ?>/images/icon-rr.jpg" class="img-fluid">
-								</a>
-							</div><!--col-lg-3-->
-							<div class="col-lg-3 col-md-3 col-sm-3 col-3">
-								<a href="https://dev.bytebunch.com/gadzoog.com/" class="app-item">
-									<img src="<?php echo get_template_directory_uri(); ?>/images/icon-gadzoog.jpg" class="img-fluid">
-								</a>
-							</div><!--col-lg-3-->
-							<div class="col-lg-3 col-md-3 col-sm-3 col-3">
-								<a href="https://dev.bytebunch.com/carmeup.com/" class="app-item">
-									<img src="<?php echo get_template_directory_uri(); ?>/images/icon-carmeup.jpg" class="img-fluid">
-								</a>
-							</div><!--col-lg-3-->
-							<div class="col-lg-3 col-md-3 col-sm-3 col-3">
-								<a href="https://dev.bytebunch.com/flexjobspot.nl/" class="app-item">
-									<img src="<?php echo get_template_directory_uri(); ?>/images/icon-flexjobspot.jpg" class="img-fluid">
-								</a>
-							</div><!--col-lg-3-->
+							<?php 
+									endwhile;
+								endif;
+							?>
 						</div><!--row-->
 					</div><!--col-lg-6-->
 				</div><!--row-->
 			</div><!--container-->
 		</section>
-		<?php } else { ?>
+		<?php } else { 
+			if(is_author()) {
+				echo '';
+			} elseif(is_tag()) {
+				echo '';
+			} elseif(is_category()) {
+				echo '';
+			} else {	
+		?>
 		<div class="container single-page-template text-center py-5">
             <h2 class="text-white mb-4"><?php the_title(); ?></h2>
             <div class="header-links">
                 <a href="<?php echo get_site_url(); ?>">Home</a>&nbsp;&nbsp;   >  &nbsp;  <?php the_title(); ?>
             </div><!--header-links-->
         </div><!--container-->
-		<?php } ?>
+		<?php } } ?>
     </header>
     <!-------------------- Header End -------------------->

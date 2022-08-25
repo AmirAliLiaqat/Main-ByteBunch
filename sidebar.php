@@ -37,9 +37,8 @@ if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 		<div class="tagcloud">
 			<?php 
 				$tags = get_tags(array(
-				'taxonomy' => 'post_tag',
-				'orderby' => 'name',
-				'hide_empty' => false // for development
+                    'taxonomy' => 'post_tag',
+                    'orderby' => 'name'
 				)); 
 
 				if($tags) {

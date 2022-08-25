@@ -17,8 +17,8 @@ get_header();
 
     <section class="contact-area">
         <div class="contact_us_map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3404.6525990683112!2d74.35811671542261!3d31.423696259052836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391907f981d3f509%3A0x45c363073ca58a20!2sByteBunch!5e0!3m2!1sen!2s!4v1640074953441!5m2!1sen!2s" 
-            width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3403.32642764111!2d74.34339782991009!3d31.460205510121252!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3919072e84ee31e5%3A0x1c3d625526b4507a!2sByteBunch!5e0!3m2!1sen!2s!4v1661173940191!5m2!1sen!2s" 
+            width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div><!--contact_us_map-->
         <div class="container">
             <div class="row justify-content-end">

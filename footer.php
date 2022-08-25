@@ -20,12 +20,14 @@
             </div><!--col-lg-5-->
             <div class="col-lg-3 col-md-6 footer-col">
                 <h5>Helpful Links</h5>
-                <ul class="list-unstyled">
-                    <li><a href="index.php" class="footer-nav-links">Home</a></li>
-                    <li><a href="our-work.php" class="footer-nav-links">Our Work</a></li>
-                    <li><a href="services.php" class="footer-nav-links">Services</a></li>
-                    <li><a href="contact.php" class="footer-nav-links">Contact</a></li>
-                </ul>
+                <?php 
+                    wp_nav_menu(
+                        array(
+                            'theme_location' => 'menu-1',
+                            'menu_id'        => 'primary-menu',
+                        )
+                    );
+                ?>
             </div><!--col-lg-5-->
             <div class="col-lg-4 col-md-6 footer-col">
                 <h5>Contact Us</h5>

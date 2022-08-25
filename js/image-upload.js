@@ -1,4 +1,4 @@
-jQuery(document).ready(function(){
+jQuery(document).ready(function() {
     
     jQuery('.miu-remove').on( "click", function(e) {
         e.preventDefault();
@@ -49,7 +49,7 @@ jQuery(document).ready(function(){
 			if(formfield.parent().find("img").length > 0)
 				formfield.parent().find("img").attr("src", attachment.url);
 			else
-				formfield.parent().find("span").append('<a target="_blank" href="'+attachment.url+'"><img width="25" src="'+attachment.url+'" /></a>');
+				formfield.parent().find("span").append('<a target="_blank" href="'+attachment.url+'"><img width="70" src="'+attachment.url+'" style=\'margin-top:10px;\' /></a>');
 			// Restore the main post ID
 			wp.media.model.settings.post.id = wp_media_post_id;
 		});
@@ -58,17 +58,15 @@ jQuery(document).ready(function(){
     });
 });
 
-function addRow(image_url){
+function addRow(image_url) {
     if(typeof(image_url)==='undefined') image_url = "";
     itemsCount+=1;
-    var emptyRowTemplate = '<table class="form-table" style=\'margin-top:0px;\'><tbody><tr><th scope="row" id=row-'+itemsCount+'><label for="com">Company logo</label></th><td> <input style=\'width:65%\' id=img-'+itemsCount+' type=\'text\' name=\'miu_images['+itemsCount+']\' value=\''+image_url+'\' />'
+    var emptyRowTemplate = '<table class="form-table" style=\'margin-top:0px;\'><tbody><tr><th scope="row" id=row-'+itemsCount+'><label for="logo">Company Logo</label></th><td> <input style=\'width:65%\' id=img-'+itemsCount+' type=\'text\' name=\'miu_images['+itemsCount+']\' value=\''+image_url+'\' />'
     +'&nbsp;<input type=\'button\' href=\'#\' class=\'Image_button button\' id=\'Image_button-'+itemsCount+'\' value=\'Select Image\'>'
     +'&nbsp;<input class="miu-remove button" type=\'button\' value=\'Remove\' id=\'remove-'+itemsCount+'\' />'
     +'&nbsp;<span>';
-    if(image_url)
-    {
-      emptyRowTemplate+= '<a target="_blank" href="'+image_url+'"><img width=70" src="'+image_url+'" style=\'margin-top:10px;\'></a>';
-
+    if(image_url) {
+      emptyRowTemplate+= '<a target="_blank" href="'+image_url+'"><img width="70" src="'+image_url+'" style=\'margin-top:10px;\'></a>';
     }
     emptyRowTemplate+='</span>'
     +'</td></tr></tbody></table>';

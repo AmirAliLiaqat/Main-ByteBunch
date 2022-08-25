@@ -27,6 +27,16 @@ function bytebunch_setup() {
 		*/
 	add_theme_support( 'post-thumbnails' );
 
+	// Define additional "post thumbnails". Relies on MultiPostThumbnails to work
+	if (class_exists('MultiPostThumbnails')) {
+		new MultiPostThumbnails(array(
+			'label' => 'Secondary image',
+			'id' => 'secondary-image',
+			'post_type' => 'portfolio'
+			)
+		);
+	};
+
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(

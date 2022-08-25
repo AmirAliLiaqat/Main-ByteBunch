@@ -3,7 +3,6 @@
 /*********************************** Register meta boxes ***********************************/
 function bb_register_meta_boxes() {
     add_meta_box( 'team_meta_box', 'Team Meta Box', 'team_meta_box_html', 'team' );
-    // add_meta_box( 'portfolio_meta_box', 'Work Meta Box', 'portfolio_meta_box_html', 'portfolio' );
 }
 add_action( 'add_meta_boxes', 'bb_register_meta_boxes' );
 
@@ -71,46 +70,6 @@ function team_meta_box_html( $post ) { ?>
     </form>
 <?php }
 
-/*********************************** Team Meta boxe Html ***********************************/
-function portfolio_meta_box_html( $post ) { ?>
-    <form action="" method="post">
-        <table class="form-table">
-            <tbody>
-                <tr>
-                    <th scope="row">
-                        <label for="work_featured">Featured</label>
-                    </th>
-                    <td>
-                        <input type="checkbox" name="work_featured" value="1" class="regular-text" checked>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="site_url">URL</label>
-                    </th>
-                    <td>
-                        <?php $url = get_post_meta( $post->ID,  'site_url', true ); ?>
-                        <input type="text" name="site_url" value="<?php echo $url; ?>" class="regular-text">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <label for="work_logo">Company logo</label>
-                    </th>
-                    <td>
-                        <?php $logo = get_post_meta( $post->ID,  'work_logo', true ); ?>
-                        <input type="url" name="work_logo" id="work_logo" value="<?php echo $logo; ?>" class="regular-text">
-                    </td>
-                    <!-- <td>
-                        <?php //$logo = get_post_meta( $post->ID,  'company_logo', true ); ?>
-                        <input type="file" name="company_logo" value="<?php //echo $logo; ?>" class="regular-text">
-                    </td> -->
-                </tr>
-            </tbody>
-        </table>
-    </form>
-<?php }
-
 /*********************************** Save Team Meta boxe Values ***********************************/
 function team_save_meta_box( $post_id = 'team' ) {
     global $post;
@@ -140,17 +99,3 @@ function team_save_meta_box( $post_id = 'team' ) {
     }
 }
 add_action( 'save_post', 'team_save_meta_box' );
-
-/*********************************** Save Portfolio Meta boxe Values ***********************************/
-function portfolio_save_meta_box( $post_id = 'portfolio' ) {
-    global $post;
-
-    if ( isset( $_POST['site_url'] ) ) { 
-        update_post_meta( $post->ID, 'site_url', $_POST['site_url'] );      
-    }
-
-    if ( isset( $_POST['work_logo'] ) ) { 
-        update_post_meta( $post->ID, 'work_logo', $_POST['work_logo'] );      
-    }
-}
-add_action( 'save_post', 'portfolio_save_meta_box' );
